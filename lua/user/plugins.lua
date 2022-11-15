@@ -93,6 +93,7 @@ return packer.startup(function(use)
   use "simrat39/symbols-outline.nvim"
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
+  use "jose-elias-alvarez/null-ls.nvim"
 
   use({ -- Install and configure tree-sitter languages
      "nvim-treesitter/nvim-treesitter",

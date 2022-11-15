@@ -133,3 +133,4 @@ require("mason-lspconfig").setup()
 
 require("nvim-gps").setup()
 require "lsp_signature".setup()
+require("null-ls").setup()
