@@ -63,7 +63,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
 
   require "lsp_signature".on_attach({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -88,25 +88,48 @@ local function make_config()
   }
 end
 
-
--- lsp-install
-local lsp_installer = require("nvim-lsp-installer")
-
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
+require("mason").setup({
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
+    },
+    border = "rounded"
+  }
+})
+require("mason-lspconfig").setup_handlers({
+  function (name)
     local opts = make_config()
 
     -- load custom lsp server settings
-	local has_custom_opts, server_custom_opts = pcall(require, "user.lsp_settings." .. server.name)
-	if has_custom_opts then
-	 	opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
-	end
+    local has_custom_opts, server_custom_opts = pcall(require, "user.lsp_settings." .. name)
+    if has_custom_opts then
+      opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
+    end
+    require("lspconfig")[name].setup(opts)
+  end
+})
 
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-end)
+require("mason-lspconfig").setup()
+-- lsp-install
+-- local lsp_installer = require("nvim-lsp-installer")
+
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+-- lsp_installer.on_server_ready(function(server)
+--     local opts = make_config()
+--
+--     -- load custom lsp server settings
+-- 	local has_custom_opts, server_custom_opts = pcall(require, "user.lsp_settings." .. server.name)
+-- 	if has_custom_opts then
+-- 	 	opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
+-- 	end
+--
+--     -- This setup() function is exactly the same as lspconfig's setup function.
+--     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+--     server:setup(opts)
+-- end)
 
 require("nvim-gps").setup()
 require "lsp_signature".setup()

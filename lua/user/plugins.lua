@@ -91,6 +91,8 @@ return packer.startup(function(use)
   use "RRethy/vim-illuminate"
   use "SmiteshP/nvim-gps"
   use "simrat39/symbols-outline.nvim"
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
 
   use({ -- Install and configure tree-sitter languages
      "nvim-treesitter/nvim-treesitter",
