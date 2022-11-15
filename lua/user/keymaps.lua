@@ -2,14 +2,15 @@
 -- key mapppings
 ------------------------------------
 
-local map = vim.api.nvim_set_keymap             -- shortcut to the map func
-local opts = { noremap = true, silent = true }  -- DRY for map options
-local expr = { noremap = true, silent = true, expr = true }  -- Opts and expr
+local map = vim.api.nvim_set_keymap -- shortcut to the map func
+local opts = { noremap = true, silent = true } -- DRY for map options
+local expr = { noremap = true, silent = true, expr = true } -- Opts and expr
 local noremap = { noremap = true }
+local wk = require("which-key")
 
 -- map the leader key to space
 map('n', '<Space>', '', {})
-vim.g.mapleader = ' '                           -- 'vim.g' sets global variables
+vim.g.mapleader = ' ' -- 'vim.g' sets global variables
 
 
 -- Maps for jj to act as Esc in insert and command modes
@@ -38,9 +39,9 @@ map('n', '<C-L>', '<C-W>l', opts)
 map('i', '<C-W>', '<C-O><C-W>', opts)
 
 -- control + arrow key to resize
-map('n', '<C-Down>',  '<C-W>+', opts)
-map('n', '<C-Up>',    '<C-W>-', opts)
-map('n', '<C-Left>',  '<C-W><', opts)
+map('n', '<C-Down>', '<C-W>+', opts)
+map('n', '<C-Up>', '<C-W>-', opts)
+map('n', '<C-Left>', '<C-W><', opts)
 map('n', '<C-Right>', '<C-W>>', opts)
 
 
@@ -50,36 +51,67 @@ map("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)
 map("t", "<C-k>", "<C-\\><C-N><C-w>k", opts)
 map("t", "<C-l>", "<C-\\><C-N><C-w>l", opts)
 
--- <leader>V Activate changes to init.lua (needs save)
-map('n', '<leader>V', ':source ~/.config/nvim/init.lua<CR>', opts)
+wk.register({
+  ["<leader>"] = {
+    S = { [[:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>]], "Remove trailing whitespace" },
+    V = { ':source ~/.config/nvim/init.lua<CR>', "Reload and activate changes in init.lua" },
+  }
+})
 
--- Clean all end of line whitespace with <Leader>S
-map('n', '<leader>S', [[:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>]], opts)
+wk.register({
+  ["<leader>f"] = {
+    name = "find",
+    f = { "<cmd>Telescope find_files<cr>", "Find File" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
+    w = { '<cmd>Telescope grep_string<cr>', "Grep String under cursor" },
+    b = { '<cmd>Telescope buffers<cr>', "Search open buffer names" },
+    h = { '<cmd>Telescope help_tags<cr>', "Search in help tags" },
+  }
+})
 
--- Telescope mapping
-map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)
-map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opts)
-map('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', opts)
-map('n', '<leader>fs', '<cmd>Telescope lsp_document_symbols<cr>', opts)
-map('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opts)
-map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opts)
-map('n', '<leader>fr', '<cmd>Telescope lsp_references<cr>', opts)
-map('n', '<leader>fS', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', opts)
+wk.register({
+  ["<leader>g"] = {
+    name = "git",
+    b = { "<cmd>Telescope git_brancges<cr>", "Branches" },
+    r = { "<cmd>Telescope git_bcommits<cr>", "Commits for Current Buffer" },
+    s = { "<cmd>Telescope git_status<cr>", "Git status" },
+    p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
+    S = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
+    U = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo Stage Hunk" },
+  }
+})
 
--- nvim tree
-map('n', '<leader>tt', ':NvimTreeToggle<CR>', opts)
-map('n', '<leader>tf', ':NvimTreeFindFile<CR>', opts)
+wk.register({
+  ["<leader>l"] = {
+    name = "language server",
+    r = { "<cmd>Telescope lsp_references<cr>", "Find References" },
+    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Find in Document Symbols" },
+    S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Find in Workspace Symbols" },
+    o = { "<cmd>SymbolsOutline<cr>", "Toggle Symbols Outline" },
+  }
+})
 
--- Right to left mappings
-map('n', '<leader>tr', ':set invrl<cr>', opts)      -- Toggle right-to-left
-map('n', '<leader>ti', ':set invrevins<cr>', opts)  -- Toggle inserting chars backwards
+wk.register({
+  ["<leader>t"] = {
+    name = "tree",
+    t = { ":NvimTreeToggle<CR>", "Toggle File Tree" },
+    f = { ":NvimTreeFindFile<CR>", "Find Current File in Tree" },
+  }
+})
 
+wk.register({
+  ["<leader>b"] = {
+    name = "BiDi",
+    r = { ":set invrl<cr>", "Toggle Right-to-Left" },
+    i = { ":set invrevins<cr>", "Toggle Inserting Chars Backwards" },
+  }
+})
 
--- Custom grep behavior (in addition to telescope, as the allow searching with
--- all of rg options)
-map('n', 'g/', ':grep!<space>', noremap)
-map('n', 'g*', ':grep! -w <C-R><C-W><space>', noremap)
-map('n', 'ga', ':grepadd!<space>', noremap)
-
--- Symbols outline
-map('n', '<leader>ts', '<cmd>SymbolsOutline<cr>', opts)
+wk.register({
+  ["g"] = {
+    ["/"] = { ":grep!<space>", "Grep" },
+    ["*"] = { ":grep! -w <C-R><C-W><space>", "Grep Word Under cursor" },
+    a = { ":grepadd!<space>", "Grep Add to Results" },
+  }
+})

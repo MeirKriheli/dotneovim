@@ -61,7 +61,16 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-media-files.nvim"
   use "nvim-lualine/lualine.nvim"
   use "kyazdani42/nvim-tree.lua"
-
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup({
+        window = {
+          border = "single"
+        }
+      })
+    end
+  }
   -- colorschemes and appearance
   use "shaunsingh/nord.nvim"
   use 'kyazdani42/nvim-web-devicons'
@@ -96,8 +105,8 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim"
 
   use({ -- Install and configure tree-sitter languages
-     "nvim-treesitter/nvim-treesitter",
-     run = ":TSUpdate",
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
   })
 
   -- Programming
