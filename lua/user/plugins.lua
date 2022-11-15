@@ -67,7 +67,12 @@ return packer.startup(function(use)
       require("which-key").setup({
         window = {
           border = "single"
-        }
+        },
+        plugins = {
+          spelling = {
+            enabled = true,
+          },
+        },
       })
     end
   }
