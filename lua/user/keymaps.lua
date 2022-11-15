@@ -73,7 +73,7 @@ wk.register({
 wk.register({
   ["<leader>g"] = {
     name = "git",
-    b = { "<cmd>Telescope git_brancges<cr>", "Branches" },
+    b = { "<cmd>Telescope git_branches<cr>", "Branches" },
     r = { "<cmd>Telescope git_bcommits<cr>", "Commits for Current Buffer" },
     s = { "<cmd>Telescope git_status<cr>", "Git status" },
     p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
