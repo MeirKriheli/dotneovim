@@ -5,7 +5,6 @@
 local map = vim.api.nvim_set_keymap -- shortcut to the map func
 local opts = { noremap = true, silent = true } -- DRY for map options
 local expr = { noremap = true, silent = true, expr = true } -- Opts and expr
-local noremap = { noremap = true }
 local wk = require("which-key")
 
 -- map the leader key to space
@@ -79,16 +78,6 @@ wk.register({
     p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
     S = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
     U = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo Stage Hunk" },
-  }
-})
-
-wk.register({
-  ["<leader>l"] = {
-    name = "language server",
-    r = { "<cmd>Telescope lsp_references<cr>", "Find References" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Find in Document Symbols" },
-    S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Find in Workspace Symbols" },
-    o = { "<cmd>SymbolsOutline<cr>", "Toggle Symbols Outline" },
   }
 })
 
