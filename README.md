@@ -20,47 +20,36 @@ Features
 * Highlight current row and color column 80
 * Syntax checking and completion via language servers
 * Quotes, parens etc pair, surround
-* ASCII drawing
 * Various fuzzy finders with Telescope
 * Git plugins (Fugitive, gitsigns)
 * Completion and snippets via LSP
 * Commenting
+* which-key integration
 
 Shortcuts and re-Mappings
 ----------------------------
 
-| Key                    | Command                                                           |
-| ---------------------- | ----------------------------------------------------------------- |
-| ``jj``                 | ``<Esc>`` in insert and command modes                             |
-| ``<SPACE>``            | ``<Leader>``                                                      |
-| ``<Leader>v``          | Load `.vimrc`                                                     |
-| ``<Leader>V``          | Activate changes to `.vimrc` (Make sure to save it before)        |
-| ``<Leader>tt``         | Toggle tree                                                       |
-| ``<Leader>tf``         | Find current file in the tree                                     |
-| ``<Leader>ts``         | Toggle symbols side bar                                           |
-| ``<Leader>S``          | Remove trailing whitespace                                        |
-| ``<CTRL>hjkl``         | Window movement commands                                          |
-| ``<CTRL>arrow``        | Resize splits
-| ``<Leader>d``          | Delete buffer, keep the split                                     |
-| ``<TAB>``              | trigger completion, completion confirm, snippet expand and jump   |
-| ``<Leader>ff``         | Find files with Telescope                                         |
-| ``<Leader>fg``         | Live Grep with Telescope                                          |
-| ``<Leader>fw``         | Grep current word with Telescope                                  |
-| ``<Leader>fs``         | Search in current document LSP symbols with Telescope             |
-| ``<Leader>fb``         | Search in current buffers with Telescope                          |
-| ``<Leader>fh``         | Search in VIM help tags with Telescope                            |
-| ``<Leader>fr``         | Find references (LSP) for symbols under cursor                    |
-| ``<Leader>fS``         | Search in workspace LSP symbols with Telescope                    |
-| ``<Leader>tr``         | Toggle logical (RTL, e.g: Hebrew) editing                         |
-| ``<Leader>ti``         | Toggle visual (RTL, e.g: Hebrew) editing (insert chars backward   |
-| ``gd``                 | Goto definition (LSP)                                             |
-| ``gr``                 | Symbol references in quickfix (LSP)                               |
-| ``K``                  | Show documentation/signature hover (LSP)                          |
-| ``<Leader>ca``         | Code actions (LSP)                                                |
-| ``<Leader>rn``         | Rename symbol (LSP)                                               |
-| ``<Leader>f``          | Format buffer (LSP)                                               |
+Some are leading to operations, marked as bold Which-key will list them.
 
-For more LSP related mappings, see [lsp.lua](lua/user/lsp.lua).
+| Key                  | Command                                                           |
+| ---------------------| ----------------------------------------------------------------- |
+| `jj`                 | `<Esc>` in insert and command modes                               |
+| `<SPACE>`            | `<Leader>`                                                        |
+| `<Leader>v`          | Load `.vimrc`                                                     |
+| `<Leader>V`          | Activate changes to `.vimrc` (Make sure to save it before)        |
+| `<Leader>S`          | Remove trailing whitespace                                        |
+| `<CTRL>hjkl`         | Window movement commands                                          |
+| `<CTRL>arrow`        | Resize splits                                                     |   
+| `<TAB>`              | trigger completion, completion confirm, snippet expand and jump   |
+| **`<Leader>f`**      | Find files, buffers and grep operations                           |
+| **`<Leader>l`**      | LSP (programming) related operations                              |
+| **`<Leader>g`**      | Git related operations                                            |
+| **`<Leader>t`**      | Tree operations                                                   |
+| **`<Leader>b`**      | Bidi (Right to left) related operations                           |
+| `K`                  | Show documentation/signature hover (LSP)                          |
+| `<Leader>e`          | Show error under cursor (LSP)                                     |
+| `[d`                 | Previous error                                                    |
+| `]d`                 | Next error                                                        |
 
 
 Prerequisites
@@ -83,4 +72,4 @@ manager:
 
 After that start Neovim and install the desired language servers, e.g:
 
-    :LspInstallInfo
+    :Mason
