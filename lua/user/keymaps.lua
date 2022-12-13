@@ -75,9 +75,12 @@ wk.register({
     b = { "<cmd>Telescope git_branches<cr>", "Branches" },
     r = { "<cmd>Telescope git_bcommits<cr>", "Commits for Current Buffer" },
     s = { "<cmd>Telescope git_status<cr>", "Git status" },
-    p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
+    P = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
     S = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
     U = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo Stage Hunk" },
+    p = { "<cmd>Gitsigns prev_hunk<cr>", "Previous Hunk" },
+    n = { "<cmd>Gitsigns next_hunk<cr>", "Next Hunk" },
+    g = { "<cmd>Git<cr>", "Fugitive" },
   }
 })
 
