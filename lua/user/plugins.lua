@@ -60,7 +60,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
   use "nvim-lualine/lualine.nvim"
-  use "kyazdani42/nvim-tree.lua"
+  use "nvim-tree/nvim-tree.lua"
   use {
     "folke/which-key.nvim",
     config = function()
@@ -78,7 +78,7 @@ return packer.startup(function(use)
   }
   -- colorschemes and appearance
   use "shaunsingh/nord.nvim"
-  use 'kyazdani42/nvim-web-devicons'
+  use 'nvim-tree/nvim-web-devicons'
 
   use "tpope/vim-fugitive"
   use "lewis6991/gitsigns.nvim"
