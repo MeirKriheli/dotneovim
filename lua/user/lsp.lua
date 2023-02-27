@@ -109,6 +109,12 @@ require("mason").setup({
     border = "rounded"
   }
 })
+
+require("mason-null-ls").setup({
+    automatic_setup = true,
+})
+require("null-ls").setup()
+
 require("mason-lspconfig").setup_handlers({
   function (name)
     local opts = make_config()
@@ -122,10 +128,10 @@ require("mason-lspconfig").setup_handlers({
   end
 })
 
+require 'mason-null-ls'.setup_handlers()
 require("mason-lspconfig").setup()
 require("nvim-gps").setup()
 require "lsp_signature".setup()
-require("null-ls").setup()
 require("symbols-outline").setup()
 
 -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
