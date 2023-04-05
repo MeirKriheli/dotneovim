@@ -33,6 +33,12 @@ local config = {
 
 vim.diagnostic.config(config)
 
+require("mason-null-ls").setup_handlers()
+require("mason-lspconfig").setup()
+require("nvim-navic").setup()
+require("lsp_signature").setup()
+require("symbols-outline").setup()
+
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -42,6 +48,7 @@ local on_attach = function(client, bufnr)
 
   local wk = require("which-key")
   local wk_opts = {buffer = bufnr}
+  local navic = require("nvim-navic")
   wk.register({
     ["<leader>l"] = {
       name = "language server",
@@ -85,6 +92,10 @@ local on_attach = function(client, bufnr)
 
   -- highlight word under cursor
   require 'illuminate'.on_attach(client)
+
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 -- config that activates keymaps and enables snippet support
