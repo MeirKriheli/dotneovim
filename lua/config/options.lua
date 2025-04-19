@@ -1,3 +1,9 @@
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.shiftwidth = 4 -- Amount to indent with << and >>
 vim.opt.tabstop = 4 -- How many spaces are shown per Tab
@@ -46,10 +52,24 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
 
+-- Hide the command line by default, unless a command is entered
 vim.opt.cmdheight = 0
 
+-- Add rounded borders where supporeted (nvim 0.11+)
 vim.o.winborder = "rounded"
 
+-- Decrease update time
+vim.opt.updatetime = 250
+
+-- Decrease mapped sequence wait time
+vim.opt.timeoutlen = 300
+
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.opt.confirm = true
+
+-- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank({ timeout = 400 })
