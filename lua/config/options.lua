@@ -75,3 +75,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank({ timeout = 400 })
     end,
 })
+
+-- Disable animations
+vim.g.minianimate_disable = true
+vim.g.snacks_animate = false
