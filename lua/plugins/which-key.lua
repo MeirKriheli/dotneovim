@@ -7,6 +7,7 @@ return {
             { "<leader>f", group = "Find" },
             { "<leader>c", group = "Code" },
             { "<leader>t", group = "Toggle" },
+            { "<leader>u", group = "Toggle [U]I elements" },
         },
     },
     keys = {
