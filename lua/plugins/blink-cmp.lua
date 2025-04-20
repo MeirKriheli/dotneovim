@@ -52,7 +52,7 @@ return {
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "emoji" },
+            default = { "lsp", "copilot", "path", "snippets", "buffer", "emoji" },
             providers = {
                 emoji = {
                     module = "blink-emoji",
@@ -67,6 +67,12 @@ return {
                             vim.o.filetype
                         )
                     end,
+                },
+                copilot = {
+                    name = "copilot",
+                    module = "blink-cmp-copilot",
+                    score_offset = 100,
+                    async = true,
                 },
             },
         },
