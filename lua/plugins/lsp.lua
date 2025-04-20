@@ -217,7 +217,22 @@ return {
         local servers = {
             -- clangd = {},
             -- gopls = {},
-            -- pyright = {},
+            pyright = {},
+            ruff = {
+                cmd_env = { RUFF_TRACE = "messages" },
+                init_options = {
+                    settings = {
+                        logLevel = "error",
+                    },
+                },
+                -- keys = {
+                --     {
+                --         "<leader>co",
+                --         LazyVim.lsp.action["source.organizeImports"],
+                --         desc = "Organize Imports",
+                --     },
+                -- },
+            },
             -- rust_analyzer = {},
             -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
             --
