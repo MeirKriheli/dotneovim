@@ -167,6 +167,20 @@ return {
                     -- end, "[T]oggle Inlay [H]ints")
                     vim.lsp.inlay_hint.enable()
                 end
+
+                if client and client.server_capabilities.codeLensProvider then
+                    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+                        buffer = event.buf,
+                        callback = function()
+                            vim.lsp.codelens.refresh()
+                        end,
+                    })
+                    vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, {
+                        buffer = event.buf,
+                        desc = "Run CodeLens action",
+                    })
+                    map("<leader>cC", vim.lsp.codelens.refresh, "CodeLens Refresh")
+                end
             end,
         })
 
@@ -233,15 +247,8 @@ return {
                 --     },
                 -- },
             },
+            -- rust_analyzer is configured by rustacean.nvim, don't add it here
             -- rust_analyzer = {},
-            -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-            --
-            -- Some languages (like typescript) have entire language plugins that can be useful:
-            --    https://github.com/pmizio/typescript-tools.nvim
-            --
-            -- But for many setups, the LSP (`ts_ls`) will work just fine
-            -- ts_ls = {},
-            --
             bashls = {},
             lua_ls = {
                 -- cmd = { ... },
@@ -266,6 +273,9 @@ return {
                         -- Do not send telemetry data containing a randomized but unique identifier
                         telemetry = {
                             enable = false,
+                        },
+                        codeLens = {
+                            enable = true,
                         },
                     },
                 },
