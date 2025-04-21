@@ -2,7 +2,33 @@ return {
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source
     dependencies = {
-        "rafamadriz/friendly-snippets",
+        -- Snippet Engine
+        {
+            "L3MON4D3/LuaSnip",
+            version = "2.*",
+            build = (function()
+                -- Build Step is needed for regex support in snippets.
+                -- This step is not supported in many windows environments.
+                -- Remove the below condition to re-enable on windows.
+                if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+                    return
+                end
+                return "make install_jsregexp"
+            end)(),
+            dependencies = {
+                -- `friendly-snippets` contains a variety of premade snippets.
+                --    See the README about individual language/framework/plugin snippets:
+                --    https://github.com/rafamadriz/friendly-snippets
+                {
+                    "rafamadriz/friendly-snippets",
+                    config = function()
+                        require("luasnip.loaders.from_vscode").lazy_load()
+                    end,
+                },
+            },
+            opts = {},
+        },
+        "folke/lazydev.nvim",
         "moyiz/blink-emoji.nvim",
     },
 
@@ -52,7 +78,7 @@ return {
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { "lsp", "copilot", "path", "snippets", "buffer", "emoji" },
+            default = { "lsp", "copilot", "path", "snippets", "lazydev", "buffer", "emoji" },
             providers = {
                 emoji = {
                     module = "blink-emoji",
@@ -74,8 +100,11 @@ return {
                     score_offset = 100,
                     async = true,
                 },
+                lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
             },
         },
+
+        snippets = { preset = "luasnip" },
 
         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
         -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
