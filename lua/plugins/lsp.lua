@@ -152,6 +152,25 @@ return {
                             vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
                         end,
                     })
+
+                    -- Enable virtual_lines after some delay
+                    vim.api.nvim_create_autocmd("CursorHold", {
+                        pattern = "*",
+                        callback = function()
+                            vim.diagnostic.config({ virtual_lines = { current_line = true } })
+                        end,
+                        desc = "Enable virtual_lines with current_line",
+                    })
+
+                    vim.api.nvim_create_autocmd("CursorMoved", {
+                        pattern = "*",
+                        callback = function()
+                            vim.diagnostic.config({ virtual_lines = false })
+                        end,
+                        desc = "Disable virtual_lines",
+                    })
+
+                    vim.o.updatetime = 1000
                 end
 
                 -- The following code creates a keymap to toggle inlay hints in your
