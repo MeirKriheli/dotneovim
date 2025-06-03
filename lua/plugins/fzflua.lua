@@ -17,98 +17,98 @@ return {
             function()
                 require("fzf-lua").files()
             end,
-            desc = "[F]ind [f]iles in Project Directory",
+            desc = "Find files in Project Directory",
         },
         {
             "<leader>fg",
             function()
                 require("fzf-lua").live_grep()
             end,
-            desc = "[F]ind by [g]repping in Project Directory",
+            desc = "Find by grepping in Project Directory",
         },
         {
             "<leader>fc",
             function()
                 require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
             end,
-            desc = "[F]ind in Neovim [C]onfiguration",
+            desc = "Find in Neovim Configuration",
         },
         {
             "<leader>fh",
             function()
                 require("fzf-lua").helptags()
             end,
-            desc = "[F]ind in [H]elp",
+            desc = "Find in Help",
         },
         {
             "<leader>fk",
             function()
                 require("fzf-lua").keymaps()
             end,
-            desc = "[F]ind [K]eymaps",
+            desc = "Find Keymaps",
         },
         {
             "<leader>fw",
             function()
                 require("fzf-lua").grep_cword()
             end,
-            desc = "[F]ind current [W]ord",
+            desc = "Find current Word",
         },
         {
             "<leader>fW",
             function()
                 require("fzf-lua").grep_cWORD()
             end,
-            desc = "[F]ind current [W]ords",
+            desc = "Find current Words",
         },
         {
             "<leader>fd",
             function()
                 require("fzf-lua").diagnostics_document()
             end,
-            desc = "[F]ind [D]iagnostics",
+            desc = "Find Diagnostics",
         },
         {
             "<leader>fD",
             function()
                 require("fzf-lua").diagnostics_workspace()
             end,
-            desc = "[F]ind [D]iagnostics in Workspace",
+            desc = "Find Diagnostics in Workspace",
         },
         {
             "<leader>f.",
             function()
                 require("fzf-lua").resume()
             end,
-            desc = "[F]ind resume ([.] like recent action)",
+            desc = "Find resume (. like recent action)",
         },
         {
             "<leader>fr",
             function()
                 require("fzf-lua").oldfiles()
             end,
-            desc = "[F]ind [R]ecent Files",
+            desc = "Find Recent Files",
         },
         {
             "<leader>fb",
             function()
                 require("fzf-lua").buffers()
             end,
-            desc = "[F]ind Existing [B]uffers",
+            desc = "Find Existing Buffers",
         },
         {
             "<leader>f/",
             function()
                 require("fzf-lua").lgrep_curbuf()
             end,
-            desc = "[/] Live grep in current buffer",
+            desc = "/ Live grep in current buffer",
         },
         {
             "<leader>fz",
             function()
                 require("fzf-lua").builtin()
             end,
-            desc = "[F]ind in F[z]f-lua builtins",
+            desc = "Find in Fzf-lua builtins",
         },
     },
 }

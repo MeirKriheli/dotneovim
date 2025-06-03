@@ -24,7 +24,7 @@ return {
                     require("CopilotChat").select_prompt()
                 end,
                 mode = "",
-                desc = "Copilot [P]rompts",
+                desc = "Copilot Prompts",
             },
         },
     },
