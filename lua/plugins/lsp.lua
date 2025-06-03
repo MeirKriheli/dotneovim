@@ -253,7 +253,7 @@ return {
         local servers = {
             -- clangd = {},
             -- gopls = {},
-            pyright = {},
+            basedpyright = {},
             ruff = {
                 cmd_env = { RUFF_TRACE = "messages" },
                 init_options = {
