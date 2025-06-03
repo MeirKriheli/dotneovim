@@ -296,6 +296,7 @@ return {
                     },
                 },
             },
+            marksman = {},
         }
 
         ---@type MasonLspconfigSettings
