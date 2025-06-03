@@ -15,3 +15,4 @@ Main plugins:
 * [conform.nvim](https://github.com/stevearc/conform.nvim)
 * [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
 * [trouble.nvim](https://github.com/folke/trouble.nvim)
+* [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
