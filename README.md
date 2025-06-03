@@ -14,3 +14,4 @@ Main plugins:
 * [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
 * [conform.nvim](https://github.com/stevearc/conform.nvim)
 * [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
+* [trouble.nvim](https://github.com/folke/trouble.nvim)

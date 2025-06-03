@@ -12,6 +12,7 @@ return {
             { "<leader>gt", group = "Git Toggle" },
             { "<leader>u", group = "Toggle UI elements" },
             { "<leader>a", group = "AI" },
+            { "<leader>x", group = "Trouble" },
         },
     },
     keys = {
