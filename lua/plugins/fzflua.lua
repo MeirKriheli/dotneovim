@@ -48,6 +48,13 @@ return {
             desc = "Find Keymaps",
         },
         {
+            "<leader>fM",
+            function()
+                require("fzf-lua").manpages()
+            end,
+            desc = "Find Man pages",
+        },
+        {
             "<leader>fw",
             function()
                 require("fzf-lua").grep_cword()
